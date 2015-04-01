@@ -11,7 +11,7 @@
 
 
 (function() {
-  var $, Skeuocard, visaProduct,
+  var $, Skeuocard,
     __slice = [].slice,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -1676,21 +1676,6 @@
       exp: 'front',
       name: 'front',
       cvc: 'back'
-    }
-  });
-
-  visaProduct = Skeuocard.prototype.CardProduct.firstMatchingShortname('visa');
-
-  visaProduct.createVariation({
-    pattern: /^414720/,
-    issuingAuthority: "Chase",
-    issuerName: "Chase Sapphire Card",
-    issuerShortname: "chase-sapphire",
-    layout: {
-      name: 'front',
-      number: 'front',
-      exp: 'front',
-      cvc: 'front'
     }
   });
 

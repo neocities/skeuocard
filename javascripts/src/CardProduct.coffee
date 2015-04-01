@@ -140,7 +140,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^35/
   companyName: "JCB"
   companyShortname: "jcb"
@@ -155,7 +155,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^3[47]/
   companyName: "American Express"
   companyShortname: "amex"
@@ -170,7 +170,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'front'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^(6706|6771|6709)/
   companyName: "Laser Card Services Ltd."
   companyShortname: "laser"
@@ -185,7 +185,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^4/
   companyName: "Visa"
   companyShortname: "visa"
@@ -200,7 +200,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^(62|88)/
   companyName: "China UnionPay"
   companyShortname: "unionpay"
@@ -215,7 +215,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^5[1-5]/
   companyName: "Mastercard"
   companyShortname: "mastercard"
@@ -230,7 +230,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^(5018|5020|5038|6304|6759|676[1-3])/
   companyName: "Maestro (MasterCard)"
   companyShortname: "maestro"
@@ -245,7 +245,7 @@ Skeuocard::CardProduct.create
     name: 'front'
     cvc: 'back'
 
-Skeuocard::CardProduct.create 
+Skeuocard::CardProduct.create
   pattern: /^(6011|65|64[4-9]|622)/
   companyName: "Discover"
   companyShortname: "discover"
@@ -261,14 +261,14 @@ Skeuocard::CardProduct.create
     cvc: 'back'
 
 # Variation of Visa layout specific to Chase Sapphire Card.
-visaProduct = Skeuocard::CardProduct.firstMatchingShortname 'visa'
-visaProduct.createVariation
-  pattern: /^414720/
-  issuingAuthority: "Chase"
-  issuerName: "Chase Sapphire Card"
-  issuerShortname: "chase-sapphire"
-  layout:
-    name: 'front'
-    number: 'front'
-    exp: 'front'
-    cvc: 'front'
+#visaProduct = Skeuocard::CardProduct.firstMatchingShortname 'visa'
+#visaProduct.createVariation
+#  pattern: /^414720/
+#  issuingAuthority: "Chase"
+#  issuerName: "Chase Sapphire Card"
+#  issuerShortname: "chase-sapphire"
+#  layout:
+#    name: 'front'
+#    number: 'front'
+#    exp: 'front'
+#    cvc: 'front'
