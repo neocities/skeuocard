@@ -17,6 +17,7 @@ class Skeuocard::FlipTabView
                @_faceValidationChanged.bind(@)
     @card.bind 'productWillChange.skeuocard', (e, card, prevProduct, newProduct)=>
       @hide() unless newProduct?
+      @show() if newProduct
 
   _faceStateChanged: (e, card, face, isFilled)->
     oppositeFace = if face is 'front' then 'back' else 'front'

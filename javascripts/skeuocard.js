@@ -13,6 +13,7 @@
 (function() {
   var $, Skeuocard, visaProduct,
     __slice = [].slice,
+    __hasProp = {}.hasOwnProperty,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $ = jQuery;
@@ -94,10 +95,9 @@
 
 
     Skeuocard.prototype._conformDOM = function() {
+      var elem, name, _ref, _ref1;
       this.el.container.removeClass('no-js');
       this.el.container.addClass("skeuocard js");
-      this.el.container.find("> :not(input,select,textarea)").remove();
-      this.el.container.find("> input,select,textarea").hide();
       this.el.underlyingFields = {
         type: this.el.container.find(this.options.typeInputSelector),
         number: this.el.container.find(this.options.numberInputSelector),
@@ -106,6 +106,20 @@
         name: this.el.container.find(this.options.nameInputSelector),
         cvc: this.el.container.find(this.options.cvcInputSelector)
       };
+      _ref = this.el.underlyingFields;
+      for (name in _ref) {
+        if (!__hasProp.call(_ref, name)) continue;
+        elem = _ref[name];
+        $(elem).detach();
+      }
+      this.el.container.find("> :not(input,select,textarea)").remove();
+      _ref1 = this.el.underlyingFields;
+      for (name in _ref1) {
+        if (!__hasProp.call(_ref1, name)) continue;
+        elem = _ref1[name];
+        $(elem).appendTo(this.el.container);
+      }
+      this.el.container.find("> input,select,textarea").hide();
       this.el.front = $("<div>").attr({
         "class": "face front"
       });
@@ -159,7 +173,7 @@
 
 
     Skeuocard.prototype._importImplicitOptions = function() {
-      var fieldEl, fieldName, _initialExp, _ref,
+      var fieldEl, fieldName, _initialExp, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6,
         _this = this;
       _ref = this.el.underlyingFields;
       for (fieldName in _ref) {
@@ -170,7 +184,7 @@
           this.options.initialValues[fieldName] = this.options.initialValues[fieldName].toString();
           this._setUnderlyingValue(fieldName, this.options.initialValues[fieldName]);
         }
-        if (this.options.initialValues[fieldName].length > 0) {
+        if (((_ref1 = this.options.initialValues[fieldName]) != null ? _ref1.length : void 0) > 0) {
           this._state['initiallyFilled'] = true;
         }
         if (this.options.validationState[fieldName] == null) {
@@ -186,16 +200,16 @@
           return _this.options.acceptedCardProducts.push(shortname);
         });
       }
-      if (this.options.initialValues.number.length > 0) {
+      if (((_ref2 = this.options.initialValues.number) != null ? _ref2.length : void 0) > 0) {
         this.set('number', this.options.initialValues.number);
       }
-      if (this.options.initialValues.name.length > 0) {
+      if (((_ref3 = this.options.initialValues.name) != null ? _ref3.length : void 0) > 0) {
         this.set('name', this.options.initialValues.name);
       }
-      if (this.options.initialValues.cvc.length > 0) {
+      if (((_ref4 = this.options.initialValues.cvc) != null ? _ref4.length : void 0) > 0) {
         this.set('cvc', this.options.initialValues.cvc);
       }
-      if (this.options.initialValues.expYear.length > 0 && this.options.initialValues.expMonth.length > 0) {
+      if (((_ref5 = this.options.initialValues.expYear) != null ? _ref5.length : void 0) > 0 && ((_ref6 = this.options.initialValues.expMonth) != null ? _ref6.length : void 0) > 0) {
         _initialExp = new Date(parseInt(this.options.initialValues.expYear), parseInt(this.options.initialValues.expMonth) - 1, 1);
         this.set('exp', _initialExp);
       }
@@ -432,7 +446,8 @@
         }
         setTimeout(function() {
           var fieldEl, fieldLength;
-          if ((fieldEl = focused.first()) != null) {
+          fieldEl = focused.first();
+          if (fieldEl.length) {
             fieldLength = fieldEl[0].maxLength;
             fieldEl.focus();
             return fieldEl[0].setSelectionRange(fieldLength, fieldLength);
@@ -537,7 +552,10 @@
       this.card.bind('faceValidationStateWillChange.skeuocard', this._faceValidationChanged.bind(this));
       this.card.bind('productWillChange.skeuocard', function(e, card, prevProduct, newProduct) {
         if (newProduct == null) {
-          return _this.hide();
+          _this.hide();
+        }
+        if (newProduct) {
+          return _this.show();
         }
       });
     }

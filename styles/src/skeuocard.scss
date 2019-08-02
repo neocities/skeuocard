@@ -111,7 +111,6 @@ $color-valid: #00CFA7;
     @include vendor-prefix(transition, all 0.25s ease);
     p{
       margin: 0.6em;
-      font-family: $cc-label-family;
       color: #fff;
       font-size: 1.0em;
       line-height: 1.2em;
