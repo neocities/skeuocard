@@ -356,7 +356,8 @@
         this._state["" + fieldName + "Valid"] = isValid;
         this.trigger("fieldValidationStateDidChange.skeuocard", [this, fieldName, isValid]);
       }
-      return this._updateValidationForFace(this.visibleFace);
+      this._updateValidationForFace('front');
+      return this._updateValidationForFace('back');
     };
 
     Skeuocard.prototype._updateValidationForFace = function(face) {
@@ -521,7 +522,17 @@
     };
 
     Skeuocard.prototype.isValid = function() {
-      return !this.el.front.hasClass('invalid') && !this.el.back.hasClass('invalid');
+      if (this.product) {
+        if (this.product.faces === 'both') {
+          return !this.el.front.hasClass('invalid') && !this.el.back.hasClass('invalid');
+        } else if (this.product.faces === 'front') {
+          return !this.el.front.hasClass('invalid');
+        } else {
+          return !this.el.back.hasClass('invalid');
+        }
+      } else {
+        return false;
+      }
     };
 
     return Skeuocard;
@@ -551,11 +562,14 @@
       this.card.bind('faceFillStateWillChange.skeuocard', this._faceStateChanged.bind(this));
       this.card.bind('faceValidationStateWillChange.skeuocard', this._faceValidationChanged.bind(this));
       this.card.bind('productWillChange.skeuocard', function(e, card, prevProduct, newProduct) {
-        if (newProduct == null) {
-          _this.hide();
-        }
-        if (newProduct) {
-          return _this.show();
+        if (newProduct != null) {
+          if (newProduct.faces === _this.face) {
+            return _this.hide();
+          } else {
+            return _this.show();
+          }
+        } else {
+          return _this.hide();
         }
       });
     }
@@ -1240,8 +1254,8 @@
       day = this.getRawValue('d') || 1;
       month = this.getRawValue('m');
       year = this.getRawValue('y');
-      if (month === 0 || year === 0) {
-        this.date = null;
+      if (month === 0 || month > 12 || year === 0) {
+        this.date = new Date(1900, 0, 1);
       } else {
         if (year < 2000) {
           year += 2000;
@@ -1381,6 +1395,7 @@
     };
 
     function CardProduct(attrs) {
+      var faces, k, v, _ref;
       this.attrs = $.extend({}, attrs);
       this.pattern = this.attrs.pattern;
       this._variances = [];
@@ -1400,6 +1415,24 @@
         isFilled: this._isCardCVCFilled.bind(this),
         isValid: this._isCardCVCValid.bind(this)
       };
+      faces = {
+        front: 0,
+        back: 0
+      };
+      _ref = attrs.layout;
+      for (k in _ref) {
+        v = _ref[k];
+        faces[attrs.layout[k]] += 1;
+      }
+      if (faces.front > 0 && faces.back > 0) {
+        this.faces = 'both';
+      } else {
+        if (faces.front > 0) {
+          this.faces = 'front';
+        } else {
+          this.faces = 'back';
+        }
+      }
     }
 
     CardProduct.prototype.createVariation = function(attrs) {

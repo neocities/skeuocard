@@ -40,6 +40,16 @@ class Skeuocard::CardProduct
     @cvc =
       isFilled: @_isCardCVCFilled.bind(@)
       isValid: @_isCardCVCValid.bind(@)
+    faces = { front: 0, back: 0 }
+    for k,v of attrs.layout
+      faces[attrs.layout[k]] += 1
+    if faces.front > 0 && faces.back > 0
+      @faces = 'both'
+    else
+      if faces.front > 0
+        @faces = 'front'
+      else
+        @faces = 'back'
 
   createVariation: (attrs)->
     @_variances.push attrs

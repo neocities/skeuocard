@@ -303,7 +303,8 @@ class Skeuocard
       @_state["#{fieldName}Valid"] = isValid
       @trigger "fieldValidationStateDidChange.skeuocard", [@, fieldName, isValid]
 
-    @_updateValidationForFace(@visibleFace)
+    @_updateValidationForFace('front')
+    @_updateValidationForFace('back')
 
   _updateValidationForFace: (face)->
     fieldsFilled = (iv.el.hasClass('filled') for iv in @_inputViewsByFace[face]).every(Boolean)
@@ -423,7 +424,15 @@ class Skeuocard
     @el.underlyingFields[field]?.val()
 
   isValid: ->
-    not @el.front.hasClass('invalid') and not @el.back.hasClass('invalid')
+    if @product
+      if @product.faces is 'both'
+        not @el.front.hasClass('invalid') and not @el.back.hasClass('invalid')
+      else if @product.faces is 'front'
+        not @el.front.hasClass('invalid')
+      else
+        not @el.back.hasClass('invalid')
+    else
+      false
 
 
 # Export the object.
