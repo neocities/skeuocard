@@ -360,12 +360,22 @@ $sprite-front-height: 93.6em;
   }
 
   .cc-number{
+    position: absolute;
+    display: block; 
     left: 1.8em;
     top: 8.05em;
+    padding: 0.1em;
+    input{
+      font-size: 1.1em;
+      &.group4{ width: 3.0em; }
+    }
+    input + input {
+      margin-left: 0.4em;
+    }
   }
 
   .cc-name{
-    left: 2.5em;
+    left: 1.8em;
     top: 12.2em;
   }
 
