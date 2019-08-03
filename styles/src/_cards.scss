@@ -31,8 +31,6 @@ $sprite-front-height: 93.6em;
     @include vendor-prefix(box-shadow, 0 0 10px $color-valid);
   }
 
-
-
   /* 
   1. If a field (or group) has focus, regardless of whether it's filled, the 
      inputs should look like inputs.
