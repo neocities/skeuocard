@@ -13,8 +13,20 @@
   font-style: normal;
 }
 
+/*
+
+// small
+$cc-face-width: 15.0em;
+$cc-face-height: 9.43em;
+$flip-tab-width: 8.13em;
+$flip-tab-height: 2.22em;
+*/
+
 $cc-face-width: 24.8em;
 $cc-face-height: 15.6em;
+
+$flip-tab-width: 13em;
+$flip-tab-height: 3.55em;
 
 $cc-label-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $cc-field-family: "ocraregular", "OCR A Std", "OCR A", Courier, "Courier New", monospace;
@@ -103,10 +115,10 @@ $color-valid: #00CFA7;
   .flip-tab{
     position: absolute;
     cursor: pointer;
-    width: 13em;
+    width: $flip-tab-width;
     display: block;
     background: #666;
-    height: 3.55em;
+    height: $flip-tab-height;
     @include vendor-prefix(border-radius, 3.55em);
     @include vendor-prefix(transition, all 0.25s ease);
     p{

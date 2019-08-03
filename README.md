@@ -1,20 +1,25 @@
-# Looking for a new maintainer!
+## This is a fork of Skeuocard
 
-Unfortunately, I haven't been able to find the time that I would like to dedicate to this project. Although it is still widely stable on most browsers, the internet is an inherently unstable place, and the usability of Skeuocard will deteriorate over time if not maintained and improved. To further the use of Skeuocard, **I'm looking for a new maintainer for the Skeuocard project.**
+I am not the original maintainer, but this piece of software has sat in rot for a while so I made a lot of trivial fixes to make it work for [my website generator DSL](https://davidsiaw.github.io/weaver-docs/dynamic/).
 
-To those of you that have submitted issues and pull requests: thank you so much for your time, attention to detail, and effort. I'm sorry that I haven't been able to return that. This was always meant to be at worst an experiment, and at best, a gift. I hope you enjoy Skeuocard, and I hope that we find a maintainer who can give this the attention your interest has demonstrated that it deserves.
+No guarantees are made whatsoever that it will work or be compatible with your website's framework cocktail.
 
-If you believe yourself or someone you know to be qualified, please reach out to me via email: [ken+skeuocard@kenkeiter.com](mailto:ken+skeuocard@kenkeiter.com).
+No effort has been made whatsoever to make it responsive.
 
-# Skeuocard (v1.0.3)
+### Differences from the original Skeuocard
+
+- MasterCard numbers are shown so they don't overlap the massive logo
+- Supports MasterCard 2-series BINs
+- Flip tab does not appear unless it needs to
+- Variety of fixes for validations, and unneccessary errors
+
+# Skeuocard (v1.2)
+
+![image](https://user-images.githubusercontent.com/874280/62412533-da683200-b63e-11e9-86a8-d0fd8b19928a.png)
 
 _Skeuocard_ is a re-think of the way we handle credit card input on the web. It progressively enhances credit card input forms so that the card inputs become skeuomorphic, facilitating accurate and fast card entry, and removing barriers to purchase.
 
 You can try it out at [http://kenkeiter.com/skeuocard](http://kenkeiter.com/skeuocard).
-
-For more on the theory behind Skeuocard, check out the blog post that started it all: [_"Redesigning Credit Card Inputs"_](http://kenkeiter.com/2013/07/21/redesigning-credit-card-inputs/) by [me (Ken Keiter)](http://kenkeiter.com/).
-
-![Skeuocard at its finest.](https://raw.github.com/kenkeiter/skeuocard/master/screenshot.png)
 
 ## Usage
 
